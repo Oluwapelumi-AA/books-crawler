@@ -45,3 +45,34 @@ This project demonstrates **web scraping, database integration, and API developm
 git clone https://github.com/Oluwapelumi-AA/books-crawler.git
 cd books-crawler
 ```
+
+2. Create and activate a virtual environment
+python -m venv venv
+# Windows
+.\venv\Scripts\Activate
+# Mac/Linux
+# source venv/bin/activate
+
+3. Install dependencies
+pip install -r requirements.txt
+4. Setup MariaDB
+
+Create the database:
+
+CREATE DATABASE books_db;
+USE books_db;
+
+Ensure your crawler_api.py has the correct DB credentials:
+
+DB_USER = "root"
+DB_PASSWORD = "12345678"
+DB_HOST = "localhost"
+DB_NAME = "books_db"
+5. Run the API (and automatically crawl the site)
+uvicorn crawler_api:app --reload
+
+The API will crawl all books on startup
+
+Access all books: http://127.0.0.1:8000/books
+
+Filter by category: http://127.0.0.1:8000/books?category=Travel
